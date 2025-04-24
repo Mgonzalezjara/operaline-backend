@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "countries",
+  "collectionName": "organizations",
   "info": {
-    "singularName": "country",
-    "pluralName": "countries",
-    "displayName": "Country",
+    "singularName": "organization",
+    "pluralName": "organizations",
+    "displayName": "Organization",
     "description": ""
   },
   "options": {
@@ -24,17 +24,28 @@
         }
       }
     },
+    "adress": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "website": {
+      "type": "string"
+    },
     "singers": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::singer.singer",
-      "mappedBy": "nationality"
+      "inversedBy": "organizations"
     },
-    "organizations": {
+    "country": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::organization.organization",
-      "mappedBy": "country"
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "organizations"
     }
   }
 }

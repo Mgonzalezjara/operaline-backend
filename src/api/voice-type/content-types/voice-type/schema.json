@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "voice_types",
+  "info": {
+    "singularName": "voice-type",
+    "pluralName": "voice-types",
+    "displayName": "Voice",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}
