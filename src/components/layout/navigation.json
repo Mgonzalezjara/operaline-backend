@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_layout_navigations",
+  "info": {
+    "displayName": "Navigation",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "navigation_item": {
+      "type": "string"
+    },
+    "URL": {
+      "type": "string"
+    }
+  }
+}

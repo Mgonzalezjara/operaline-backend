@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_layout_company_infos",
+  "info": {
+    "displayName": "Company Info",
+    "icon": "globe",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "instagram": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "fax": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "post_code": {
+      "type": "string"
+    }
+  }
+}
