@@ -32,11 +32,25 @@ export interface LayoutNavigation extends Struct.ComponentSchema {
   };
 }
 
+export interface SingerBiography extends Struct.ComponentSchema {
+  collectionName: 'components_singer_biographies';
+  info: {
+    description: '';
+    displayName: 'Biography';
+    icon: 'book';
+  };
+  attributes: {
+    biography_text: Schema.Attribute.Blocks;
+    language: Schema.Attribute.Relation<'oneToOne', 'api::language.language'>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'layout.company-info': LayoutCompanyInfo;
       'layout.navigation': LayoutNavigation;
+      'singer.biography': SingerBiography;
     }
   }
 }

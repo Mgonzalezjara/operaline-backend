@@ -8,21 +8,13 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "pluginOptions": {}
     },
     "nationality": {
       "type": "relation",
@@ -43,11 +35,7 @@
         "images",
         "files"
       ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "pluginOptions": {}
     },
     "slug": {
       "type": "uid",
@@ -67,49 +55,25 @@
     },
     "instagram": {
       "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "pluginOptions": {}
     },
     "twitter": {
       "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "pluginOptions": {}
     },
     "facebook": {
       "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "pluginOptions": {}
     },
     "website": {
       "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "pluginOptions": {}
     },
     "organizations": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::organization.organization",
       "mappedBy": "singers"
-    },
-    "biography": {
-      "type": "blocks",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
     },
     "gallery": {
       "type": "media",
@@ -120,25 +84,23 @@
         "files",
         "videos"
       ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "pluginOptions": {}
     },
     "last_name": {
       "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "pluginOptions": {}
     },
     "users_permissions_user": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "singer"
+    },
+    "biography_text": {
+      "displayName": "Biography",
+      "type": "component",
+      "repeatable": true,
+      "component": "singer.biography"
     }
   }
 }

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_singer_biographies",
+  "info": {
+    "displayName": "Biography",
+    "icon": "book",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "language": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::language.language"
+    },
+    "biography_text": {
+      "type": "blocks"
+    }
+  }
+}

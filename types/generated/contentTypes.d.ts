@@ -412,6 +412,34 @@ export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiLanguageLanguage extends Struct.CollectionTypeSchema {
+  collectionName: 'languages';
+  info: {
+    displayName: 'Language';
+    pluralName: 'languages';
+    singularName: 'language';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    language_name: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::language.language'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLayoutLayout extends Struct.SingleTypeSchema {
   collectionName: 'layouts';
   info: {
@@ -532,7 +560,7 @@ export interface ApiOrganizationOrganization
     adress: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     country: Schema.Attribute.Relation<'manyToOne', 'api::country.country'>;
@@ -568,56 +596,25 @@ export interface ApiSingerSinger extends Struct.CollectionTypeSchema {
     singularName: 'singer';
   };
   options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
+    draftAndPublish: false;
   };
   attributes: {
-    biography: Schema.Attribute.Blocks &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    biography_text: Schema.Attribute.Component<'singer.biography', true>;
     birth_place: Schema.Attribute.Relation<'oneToOne', 'api::country.country'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    facebook: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    gallery: Schema.Attribute.Media<'images' | 'files' | 'videos', true> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    instagram: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    last_name: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::singer.singer'>;
-    name: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    facebook: Schema.Attribute.String;
+    gallery: Schema.Attribute.Media<'images' | 'files' | 'videos', true>;
+    instagram: Schema.Attribute.String;
+    last_name: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::singer.singer'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
     nationality: Schema.Attribute.Relation<
       'manyToMany',
       'api::country.country'
@@ -626,20 +623,10 @@ export interface ApiSingerSinger extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::organization.organization'
     >;
-    profile_image: Schema.Attribute.Media<'images' | 'files'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
+    profile_image: Schema.Attribute.Media<'images' | 'files'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'>;
-    twitter: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
+    twitter: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -660,12 +647,7 @@ export interface ApiSingerSinger extends Struct.CollectionTypeSchema {
         }
       >;
     voice: Schema.Attribute.Relation<'oneToOne', 'api::voice-type.voice-type'>;
-    website: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
+    website: Schema.Attribute.String;
   };
 }
 
@@ -1267,6 +1249,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::country.country': ApiCountryCountry;
+      'api::language.language': ApiLanguageLanguage;
       'api::layout.layout': ApiLayoutLayout;
       'api::login.login': ApiLoginLogin;
       'api::organization.organization': ApiOrganizationOrganization;

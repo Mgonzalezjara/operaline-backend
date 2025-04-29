@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "languages",
+  "info": {
+    "singularName": "language",
+    "pluralName": "languages",
+    "displayName": "Language"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "language_name": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
